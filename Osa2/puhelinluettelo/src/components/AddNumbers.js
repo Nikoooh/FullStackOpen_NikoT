@@ -1,7 +1,7 @@
 import React from 'react'
+import Notification from './Notification'
 
-const AddNumbers = ({newName, newNumber, handleChange, handleForm}) => {
-
+const AddNumbers = ({newName, newNumber, handleChange, handleForm, message}) => {
     return (
         <div>
             <form onSubmit={handleForm}>
@@ -16,6 +16,7 @@ const AddNumbers = ({newName, newNumber, handleChange, handleForm}) => {
                     <button type="submit">add</button>
                 </div>
             </form>
+            <Notification message={message}/>
       </div>
     )
 }
