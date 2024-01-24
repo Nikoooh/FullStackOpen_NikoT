@@ -77,9 +77,12 @@ const App = () => {
   const handleFilter = (e) => {
     e.preventDefault()
 
-    setFiltered(true)
-    setFilteredPersons(persons.filter(person => person.name.toLocaleLowerCase().includes(filterString.toLowerCase())))
-
+    if (filterString.length === 0) {
+      setFiltered(false)
+    } else {
+      setFiltered(true)
+      setFilteredPersons(persons.filter(person => person.name.toLocaleLowerCase().includes(filterString.toLowerCase())))
+    }
   }
 
   const handleDelete = (person) => {
