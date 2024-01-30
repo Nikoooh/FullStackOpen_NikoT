@@ -6,6 +6,14 @@ import react from "@vitejs/plugin-react";
 export default defineConfig(({ mode }) => {
     setEnv(mode);
     return {
+        server: {
+            proxy: {
+                '/api': {
+                    target: 'http://localhost:3001',
+                    changeOrigin: true
+                }
+            }
+        },
         plugins: [
             react(),
             envPlugin(),
@@ -17,7 +25,9 @@ export default defineConfig(({ mode }) => {
             htmlPlugin(mode),
         ],
     };
+    
 });
+
 function setEnv(mode) {
     Object.assign(process.env, loadEnv(mode, ".", ["REACT_APP_", "NODE_ENV", "PUBLIC_URL"]));
     process.env.NODE_ENV ||= mode;
